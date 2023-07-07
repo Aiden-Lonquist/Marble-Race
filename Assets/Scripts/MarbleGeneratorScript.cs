@@ -13,6 +13,7 @@ public class MarbleGeneratorScript : MonoBehaviour
     private string roomTitle;
     private int numRooms = 5;
     private bool topThree = false;
+    private GameObject levelManager;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class MarbleGeneratorScript : MonoBehaviour
     void Start()
     {
         Debug.Log("On Start: total " + total + ", marble count " + Marbles.Count);
+        levelManager = GameObject.Find("LevelSelectManager(Clone)");
         //PopulateList(total);
     }
 
@@ -141,7 +143,7 @@ public class MarbleGeneratorScript : MonoBehaviour
 
     private string GetNextRoom()
     {
-        int num = Random.Range(1, numRooms+1);
+        int num = levelManager.GetComponent<LevelManagerScript>().GetRandomLevel();
         string room = "Room" + num.ToString();
         return room;
     }

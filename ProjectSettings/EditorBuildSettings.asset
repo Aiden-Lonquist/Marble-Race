@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/RoomViewMarbles.unity
     guid: 33318e4627fc3e045a7bc30c61f24aac
   - enabled: 1
+    path: Assets/Scenes/RoomViewLevels.unity
+    guid: d2c26ee0568fd894886e95b160084ff3
+  - enabled: 1
+    path: Assets/Scenes/RoomSettings.unity
+    guid: 50bb3b66691abdc4ba0e1cfd5d102913
+  - enabled: 1
     path: Assets/Scenes/Room1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -29,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room6.unity
     guid: 4f5a01efb23f11a40a09b727aaf134f4
+  - enabled: 1
+    path: Assets/Scenes/Room7.unity
+    guid: 9a353c1e791d048449c1563f8397f94a
   - enabled: 1
     path: Assets/Scenes/RoomPodium.unity
     guid: bcdde694b1bdecc4dae3de776aa069d2

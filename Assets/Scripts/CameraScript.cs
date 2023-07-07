@@ -9,7 +9,7 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!GameObject.Find("EventSystem").GetComponent<EventSystemScript>().GetViewMarbles())
+        if (GameObject.Find("EventSystem").GetComponent<EventSystemScript>().GetLevel())
         {
             transform.position = new Vector3(0, 7, -10);
         } else

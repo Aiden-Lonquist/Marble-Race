@@ -30,7 +30,13 @@ public class ObjectMovementScript : MonoBehaviour
 
         if (rotational)
         {
-            transform.Rotate(0, 0, rotationalSpeed * Time.deltaTime);
+            if (reverse)
+            {
+                transform.Rotate(0, 0, -rotationalSpeed * Time.deltaTime);
+            } else
+            {
+                transform.Rotate(0, 0, rotationalSpeed * Time.deltaTime);
+            }
         }
 
         CheckReverse();
