@@ -20,11 +20,17 @@ public class GameSettingsScript : MonoBehaviour
         
     }
 
-    private void UpdateInputField()
+    private void UpdateInputField() // set input field with values from instantiator (erorr returning 0s)
     {
         //nameInputPlaceholder.text = text;
-        countInputField.text = instantiator.GetComponent<InstantiatorScript>().GetReductionAmount().ToString();
-        reductionInputField.text = instantiator.GetComponent<InstantiatorScript>().GetMarbleCount().ToString();
+        // countInputField.text = instantiator.GetComponent<InstantiatorScript>().GetReductionAmount().ToString();
+        // reductionInputField.text = instantiator.GetComponent<InstantiatorScript>().GetMarbleCount().ToString();
+
+        // hardcoding default values for now.
+        countInputField.text = "50";
+        reductionInputField.text = "10";
+        UpdateGameSettings();
+
     }
 
     public void UpdateGameSettings()

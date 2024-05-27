@@ -7,6 +7,8 @@ public class InstantiatorScript : MonoBehaviour
     static bool started;
     public GameObject marbleGen, levelManager;
     public int marbleCount, reductionAmount, levelCount;
+    public List<BulkMarble> bulkMarbles = new List<BulkMarble>();
+    
     // Start is called before the first frame update
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class InstantiatorScript : MonoBehaviour
 
     }
 
-    public void InstantiateMarbleGen()
+    public void InstantiateMarbleGen() // happens when settings are confirmed
     {
         if (GameObject.Find("MarbleGenerator(Clone)"))
         {
@@ -37,6 +39,7 @@ public class InstantiatorScript : MonoBehaviour
         }
         GameObject gen = Instantiate(marbleGen);
         gen.GetComponent<MarbleGeneratorScript>().SetReductionAmount(reductionAmount);
+        gen.GetComponent<MarbleGeneratorScript>().SetBulkMarbles(bulkMarbles);
         gen.GetComponent<MarbleGeneratorScript>().PopulateList(marbleCount);
     }
 
@@ -64,5 +67,16 @@ public class InstantiatorScript : MonoBehaviour
     public void SetReductionAmount(int a)
     {
         reductionAmount = a;
+    }
+
+    public void AddBlukMarble(BulkMarble m, int index)
+    { 
+        if (bulkMarbles.Count <= index)
+        {
+            bulkMarbles.Add(m);
+        } else
+        {
+            bulkMarbles[index] = m;
+        }
     }
 }

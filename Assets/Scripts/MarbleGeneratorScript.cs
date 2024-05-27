@@ -14,6 +14,7 @@ public class MarbleGeneratorScript : MonoBehaviour
     private int numRooms = 5;
     private bool topThree = false;
     private GameObject levelManager;
+    private List<BulkMarble> bulkMarbles = new List<BulkMarble>();
 
     private void Awake()
     {
@@ -76,18 +77,49 @@ public class MarbleGeneratorScript : MonoBehaviour
         }
     }
 
-    public void PopulateList(int amount)
+    public void PopulateList(int amount) // creates a list of marbles with size of given total
     {
         total = amount;
         for (int i=0; i<amount; i++)
         {
-            //Debug.Log("Populating list of marbles");
-            //Marbles.Add(new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
-            Marble m = new Marble();
-            m.nametag = (i+1).ToString();
-            m.c = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-            m.index = i;
-            Marbles.Add(m);
+            // add bulk marbles to list first
+            if (bulkMarbles.Count >= 1)
+            {
+                BulkMarble bm = bulkMarbles[0];
+                if (amount - i > bm.count)
+                {
+                    for (int j=0; j < bm.count; j++)
+                    {
+                        Marble bulk_m = new Marble();
+                        bulk_m.nametag = bm.name;
+                        bulk_m.c = bm.color;
+                        bulk_m.index = i;
+                        Marbles.Add(bulk_m);
+                    }
+                    i += bm.count-1;
+                } else
+                {
+                    for (int j = 0; j < amount - i; j++)
+                    {
+                        Marble bulk_m = new Marble();
+                        bulk_m.nametag = bm.name;
+                        bulk_m.c = bm.color;
+                        bulk_m.index = i;
+                        Marbles.Add(bulk_m);
+                    }
+                    i = amount;
+                }
+                bulkMarbles.RemoveAt(0);
+            } else
+            {
+                //Debug.Log("Populating list of marbles");
+                //Marbles.Add(new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f)));
+                Marble m = new Marble();
+                m.nametag = (i + 1).ToString();
+                m.c = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+                m.index = i;
+                Marbles.Add(m);
+            }
         }
     }
 
@@ -169,6 +201,11 @@ public class MarbleGeneratorScript : MonoBehaviour
     public void SetReductionAmount(int a)
     {
         reductionAmount = a;
+    }
+
+    public void SetBulkMarbles(List<BulkMarble> bmList)
+    {
+        bulkMarbles = bmList;
     }
 
     public int GetCutoff()
